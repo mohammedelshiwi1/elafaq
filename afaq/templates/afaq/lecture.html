@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{%load  static %}
+<!DOCTYPE html>
+
+{%block title%}{{lec.title}}{%endblock%}
+
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {%block css%}{%static "afaq/lecturepage.css"%}{%endblock%}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <script>
+        const form= document.quertySelector('#comments')
+        form.addEventListener('submit',function(e){
+            e.preventDefault()
+            form.reset()
+        })
+    </script>
+</head>
+{%block body%}
+{% include "includes/nav.html"%}
+<br>
+<div class="intro">
+    <main class="intro">
+<h1 style="margin:auto;">{{lec.title}}</h1>
+<br><br><h3>{{lec.des}}</h3></main>
+</div>
+<br><br><br>
+<center>
+<div class="video">
+<main  class="video">
+<iframe  width="80%" height="700"
+src="{{lec.videourl}}">
+</iframe>
+</main>
+</div>
+</center>
+<div class="pdf">
+    <h2>ملزمه الحصه</h2>
+    <iframe src="{{lec.pdf}}" width="840" height="520" allow="autoplay" frameborder="0"></iframe>
+</div><br>
+<center>
+    <button class="sb" style="width: 90px;"> <a style="color: white; text-decoration: none;"  href="{% url "quiz_page" lec.quiz.name lec.quiz.pk%}" > الاختبار/الواجب</a></button>
+
+</center>
+<div class="questions">
+<form id="comments" method="POST">
+    {% csrf_token %}
+    <div style="width: 400px">
+        <h2>ادحل اسم المستخدم الخاص بك:</h2>
+        <br>
+        {{form.user}}  
+    <h2>اترك سؤالك</h2>
+    {{form.ques}}
+    </div>
+    <button class="sb"  style="width: 90px">submit</button>
+</div>
+<br>
+{% for x in quests %}
+<main>
+<div class="queses">
+<h1>{{x.user}}</h1>
+<br>
+{{x.ques}}
+</main>
+</div><br><br>
+{%endfor%}
+<br>
+  
+</div><br>    
+<footer class="foo">
+    <br><br>
+    <h1> للتواصل او الاشتراك<br>
+        واتساب:01501908507<br>
+        مع تحيات ا\جلال حمدي
+    </h1>
+</footer>
+
+
+{%endblock%}

@@ -1,0 +1,58 @@
+body{
+    margin: auto  0px;
+
+}
+.intro{
+    margin: auto;
+    text-align: center;
+}
+.video{
+    margin:auto;
+}
+.pdf{
+    margin: auto;
+    text-align: center;
+}.foo{
+    text-align: center;
+    background-image: linear-gradient( #c7f9cc , #38a3a5 );
+        width: 100%;
+    height: 300px;
+}
+.questions{
+    background-image: linear-gradient(45deg, #38a3a5, #c7f9cc  );
+    border-radius: 20px;
+    width: 50%;
+    margin:auto;
+    height: 300px;
+    padding: 10px;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+
+}
+.sb{color: #e9e6f0;
+    border: none;
+    background-color: rgb(2, 2, 246);
+    width: 100%;
+    margin: 15px auto;
+padding: 10px;
+border-radius: 10px;
+animation: slide-up 1s;
+}
+input{width: 94%;
+    border-radius:10px ;
+    background-color:white;
+    border: none;
+    height: 35px;
+    
+
+    }
+.queses{
+    background-image: linear-gradient(45deg,#f72585, #480ca8   );
+    margin: auto;
+    width: 50%;
+    height:200px;
+    padding:15px;
+    border-radius: 20px; 
+    font-size: 20px;
+    color: white;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+}    

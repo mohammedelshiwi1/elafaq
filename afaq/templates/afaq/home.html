@@ -1,0 +1,190 @@
+{% extends 'base.html' %}
+{% load grouptags %}
+{%load  static %}
+<!DOCTYPE html>
+
+{%block title%}Homepage{%endblock%}
+
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {%block css%}{%static "afaq/home.css"%}{%endblock%}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+{%block body%} 
+{% include "includes/nav.html" %}
+<main style="padding:10px;">
+
+    {% if request.user|has_group:"jan" %} 
+    {% for x in lec1%}
+    <div class="lecture">
+    
+    
+    <div><img  style="border-radius:25px; width: 150px" src="{{ x.image.url}}"></div>
+    <div style=>{{x.title}}<br>
+    {{x.des}}</div>
+    <button  style="width: 70px; height:30px; transform: translatey(10px)" class="sb"> 
+        <a style="color: white; text-decoration: none;" href="{% url "lecture_page" x.title x.slug %}">view</a> </button>
+    
+    </div>
+    <br><br>
+
+    {%endfor%}
+    {% endif %}
+    
+    {% if request.user|has_group:"feb" %} 
+{% for x in lec2%}
+<div class="lecture">
+<div><img  style="border-radius:25px; width: 150px" src="{{ x.image.url}}"></div>
+<div style=>{{x.title}}<br>
+{{x.des}}</div>
+<button  style="width: 70px; height:30px; transform: translatey(10px)" class="sb"> 
+    <a style="color: white; text-decoration: none;" href="{% url "lecture_page" x.title x.slug %}">view</a> </button>
+</div>
+<br><br>
+
+{%endfor%}
+{% endif %}
+
+{% if request.user|has_group:"mar" %} 
+{% for x in lec3%}
+<div class="lecture">
+<div><img  style="border-radius:25px; width: 150px" src="{{ x.image.url}}"></div>
+<div style=>{{x.title}}<br>
+{{x.des}}</div>
+<button  style="width: 70px; height:30px; transform: translatey(10px)" class="sb"> 
+    <a style="color: white; text-decoration: none;" href="{% url "lecture_page" x.title x.slug %}">view</a> </button>
+</div>
+<br><br>
+{%endfor%}
+{% endif %}
+
+{% if request.user|has_group:"apr" %} 
+{% for x in lec4%}
+<div class="lecture">
+<div><img  style="border-radius:25px; width: 150px" src="{{ x.image.url}}"></div>
+<div style=>{{x.title}}<br>
+{{x.des}}</div>
+<button  style="width: 70px; height:30px; transform: translatey(10px)" class="sb"> 
+    <a style="color: white; text-decoration: none;" href="{% url "lecture_page" x.title x.slug %}">view</a> </button>
+</div>
+<br><br>
+{%endfor%}
+{% endif %}
+
+{% if request.user|has_group:"may" %} 
+{% for x in lec5%}
+<div class="lecture">
+<div><img  style="border-radius:25px; width: 150px" src="{{ x.image.url}}"></div>
+<div style=>{{x.title}}<br>
+{{x.des}}</div>
+<button  style="width: 70px; height:30px; transform: translatey(10px)" class="sb"> 
+    <a style="color: white; text-decoration: none;" href="{% url "lecture_page" x.title x.slug %}">view</a> </button>
+</div>
+<br><br>
+{%endfor%}
+{% endif %}
+
+{% if request.user|has_group:"jun" %} 
+{% for x in lec6%}
+<div class="lecture">
+<div><img  style="border-radius:25px; width: 150px" src="{{ x.image.url}}"></div>
+<div style=>{{x.title}}<br>
+{{x.des}}</div>
+<button  style="width: 70px; height:30px; transform: translatey(10px)" class="sb"> 
+    <a style="color: white; text-decoration: none;" href="{% url "lecture_page" x.title x.slug %}">view</a> </button>
+</div>
+<br><br>
+{%endfor%}
+{% endif %}
+
+{% if request.user|has_group:"jul" %} 
+{% for x in lec7%}
+<div class="lecture">
+<div><img  style="border-radius:25px; width: 150px" src="{{ x.image.url}}"></div>
+<div style=>{{x.title}}<br>
+{{x.des}}</div>
+<button  style="width: 70px; height:30px; transform: translatey(10px)" class="sb"> 
+    <a style="color: white; text-decoration: none;" href="{% url "lecture_page" x.title x.slug %}">view</a> </button>
+</div>
+<br><br>
+{%endfor%}
+{% endif %}
+
+{% if request.user|has_group:"aug" %} 
+{% for x in lec8%}
+<div class="lecture">
+<div><img  style="border-radius:25px; width: 150px" src="{{ x.image.url}}"></div>
+<div style=>{{x.title}}<br>
+{{x.des}}</div>
+<button  style="width: 70px; height:30px; transform: translatey(10px)" class="sb"> 
+    <a style="color: white; text-decoration: none;" href="{% url "lecture_page" x.title x.slug %}">view</a> </button>
+</div>
+<br><br>
+{%endfor%}
+{% endif %}
+
+
+{% if request.user|has_group:"sep" %} 
+{% for x in lec9%}
+<div class="lecture">
+<div><img  style="border-radius:25px; width: 150px" src="{{ x.image.url}}"></div>
+<div style=>{{x.title}}<br>
+{{x.des}}</div>
+<button  style="width: 70px; height:30px; transform: translatey(10px)" class="sb"> 
+    <a style="color: white; text-decoration: none;" href="{% url "lecture_page" x.title x.slug %}">view</a> </button>
+</div>
+<br><br>
+{%endfor%}
+{% endif %}
+
+{% if request.user|has_group:"oct" %} 
+{% for x in lec10%}
+<div class="lecture">
+<div><img  style="border-radius:25px; width: 150px" src="{{ x.image.url}}"></div>
+<div style=>{{x.title}}<br>
+{{x.des}}</div>
+<button  style="width: 70px; height:30px; transform: translatey(10px)" class="sb"> 
+    <a style="color: white; text-decoration: none;" href="{% url "lecture_page" x.title x.slug %}">view</a> </button>
+</div>
+<br><br>
+{%endfor%}
+{% endif %}
+
+{% if request.user|has_group:"nov" %} 
+{% for x in lec11%}
+<div class="lecture">
+<div><img  style="border-radius:25px; width: 150px" src="{{ x.image.url}}"></div>
+<div style=>{{x.title}}<br>
+{{x.des}}</div>
+<button  style="width: 70px; height:30px; transform: translatey(10px)" class="sb"> 
+    <a style="color: white; text-decoration: none;" href="{% url "lecture_page" x.title x.slug %}">view</a> </button>
+</div>
+<br><br>
+{%endfor%}
+{% endif %}
+
+{% if request.user|has_group:"dec" %} 
+{% for x in lec12%}
+<div class="lecture">
+<div><img  style="border-radius:25px; width: 150px" src="{{ x.image.url}}"></div>
+<div style=>{{x.title}}<br>
+{{x.des}}</div>
+<button  style="width: 70px; height:30px; transform: translatey(10px)" class="sb"> 
+    <a style="color: white; text-decoration: none;" href="{% url "lecture_page" x.title x.slug %}">view</a> </button>
+</div>
+<br><br>
+{% endfor %}
+{% endif %}
+</main>
+
+<footer class="foo">
+    <br><br>
+    <h1> للتواصل او الاشتراك<br>
+        واتساب:01501908507<br>
+        مع تحيات ا\جلال حمدي
+    </h1>
+</footer>
+{%endblock%}
