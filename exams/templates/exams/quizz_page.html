@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ quiz.name }}</title>
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+</head>
+<body>
+    <div class="container">
+        <h1>{{ quiz.name }}</h1>
+        <form id="quiz-form" method="POST" data-quiz-id="{{ quiz.id }}">
+            {% csrf_token %}
+            {% for question in questions %}
+            <div class="card my-4">
+                {% if question.question_image %}
+                <div class="card-img-top">
+                    <img src="{{ question.question_image.url }}" class="img-fluid" alt="Question Image">
+                </div>
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">{{ question.question_text }}</h5>
+                    {% for option in question.option_set.all %}
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="answer" id="option{{ option.id }}" value="{{ option.id }}">
+                        <label class="form-check-label" for="option{{ option.id }}">
+                            {{ option.option_text }}
+                        </label>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endfor %}
+
+            <div class="card">
+                <div class="card-body">
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+  
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+console.log("im working shiwi")
+$(document).ready(function() {
+    // Function to submit the quiz using AJAX
+    function submitQuiz() {
+        var formData = $("#quiz-form").serializeArray();
+        var quizId = $("#quiz-form").data("quiz-id");
+
+        $.ajax({
+            type: "POST",
+            url: `/submit_quiz/${quizId}/`,
+            data: formData,
+            dataType: "json",
+            success: function(response) {
+                if (response.score !== undefined) {
+                    $("#quiz-form").append("<div class='notification is-success'>Your score: " + response.score + "</div>");
+                    $("button[type='submit']").prop("disabled", true);
+                } else {
+                    $("#quiz-form").append("<div class='notification is-danger'>Error submitting the quiz.</div>");
+                }
+            },
+            error: function() {
+                $("#quiz-form").append("<div class='notification is-danger'>Error submitting the quiz.</div>");
+            }
+        });
+    }
+
+    // Timer logic
+    var durationInSeconds = {{ quiz.time_duration|divisibleby:60 }}; // The duration in seconds from the Django model
+    var timerDisplay = $("#timer-display");
+
+    function updateTimer() {
+        if (durationInSeconds > 0) {
+            var minutes = Math.floor(durationInSeconds / 60);
+            var seconds = durationInSeconds % 60;
+            timerDisplay.text(minutes + ":" + (seconds < 10 ? "0" : "") + seconds);
+            durationInSeconds--;
+        } else {
+            // Time is up, submit the quiz
+            timerDisplay.text("Time's up!");
+            submitQuiz();
+        }
+    }
+
+    // Start the timer
+    var timerInterval = setInterval(updateTimer, 1000);
+
+    // Submit quiz when the form is submitted
+    $("#quiz-form").on("submit", function(event) {
+        event.preventDefault();
+        clearInterval(timerInterval); // Stop the timer
+        submitQuiz();
+    });
+});
+</script>        
+</body>
+</html>
